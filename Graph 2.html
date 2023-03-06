@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Graph2 Different Bed Types</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1100px;height:850px;"></div>
+    <script type="text/javascript">
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            backgroundColor: "#404A59",
+            color: ['#ffd285', '#ff733f', '#ec4863'],
+
+            title: [{
+                text: 'Number of Different Bed Types',
+                left: '1%',
+                top: '6%',
+                textStyle: {
+                    color: '#fff'
+                }
+            }, {
+                text: 'Proportion of Different Bed Types',
+                left: '83%',
+                top: '6%',
+                textAlign: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            }, {
+                text: '2022',
+                left: '82%',
+                top: '48%',
+                textAlign: 'center',
+                fontSize: 18,
+                fontWeight:'bold',
+                textStyle: {
+                    color: '#fff'
+                }
+            }, {
+                text: '2021',
+                left: '82%',
+                top: '90%',
+                textAlign: 'center',
+                fontSize: 18,
+                fontWeight:'bold',
+                textStyle: {
+                    color: '#fff'
+                }
+            }],
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                x: 300,
+                top: '7%',
+                left: '30%',
+                textStyle: {
+                    color: '#ffd285',
+                },
+                data: ['with children', 'without children', 'with only children']
+            },
+            grid: {
+                left: '1%',
+                right: '35%',
+                top: '16%',
+                bottom: '6%',
+                containLabel: true
+            },
+            toolbox: {
+                "show": false,
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                name: "Year",
+                type: 'category',
+                "axisLine": {
+                    lineStyle: {
+                        color: '#FF4500'
+                    }
+                },
+                "axisTick": {
+                    "show": false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                boundaryGap: false,
+                data: [2016, 2017, 2018, 2019, 2020, 2021, 2022]
+            },
+            yAxis: {
+                name: "Count of beds",
+                "axisLine": {
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#fff'
+                    }
+                },
+                "axisTick": {
+                    "show": false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                type: 'value'
+            },
+            series: [{
+                name: 'with children',
+                smooth: true,
+                type: 'line',
+                symbolSize: 8,
+                symbol: 'circle',
+                data: [224, 182, 194, 126, 116, 111, 134]
+            }, {
+                name: 'without children',
+                smooth: true,
+                type: 'line',
+                symbolSize: 8,
+                symbol: 'circle',
+                data: [204, 199, 127, 189, 189, 229, 267]
+            }, {
+                name: 'with only children',
+                smooth: true,
+                type: 'line',
+                symbolSize: 8,
+                symbol: 'circle',
+                data: [32, 0, 32, 32, 18, 32, 28]
+            }, {
+                name: 'Access From',
+                type: 'pie',
+                center: ['83%', '30%'],
+                radius: ['25%', '30%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                    show: true,
+                    fontSize: 40,
+                    fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    { value: 134, name: 'With Children', itemStyle: {color:"#ffd285"} },
+                    { value: 267, name: 'Without Children', itemStyle: {color:"#ff733f"} },
+                    { value:  28, name: 'With Only Children', itemStyle: {color: "#ec4863"} },
+                    { value: 100, name: 'Dedicated Veteran', itemStyle: {color: "#FF9393"} },
+                    { value:  28, name: 'Dedicated Youth', itemStyle: {color: "#45C2E0"} }
+                ] 
+            }, {
+                name: 'Access From',
+                type: 'pie',
+                center: ['83%', '72%'],
+                radius: ['25%', '30%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                    show: true,
+                    fontSize: 40,
+                    fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    { value: 111, name: 'With Children', itemStyle: {color:"#ffd285"} },
+                    { value: 229, name: 'Without Children', itemStyle: {color:"#ff733f"} },
+                    { value:  32, name: 'With Only Children', itemStyle: {color: "#ec4863"} },
+                    { value:  79, name: 'Dedicated Veteran', itemStyle: {color: "#FF9393"} },
+                    { value:  32, name: 'Dedicated Youth', itemStyle: {color: "#45C2E0"} }
+                ] 
+            }]
+        };
+        option && myChart.setOption(option);
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
+

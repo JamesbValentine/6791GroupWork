@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Graph1 Homelessness Overtime</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1100px;height:850px;"></div>
+    <script type="text/javascript">
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        let category = [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022];
+        let lineData = [744, 924, 1019, 1179, 1814, 1718, 1256, 870, 844, 819, 756, 804, 880, 677, 925];
+        let barData = [465, 623, 722, 740, 1425, 1305, 888, 553, 425, 446, 433, 498, 601, 364, 587];
+
+
+
+        // option
+        option = {
+            backgroundColor: '#0f375f',
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['Total Homelessness', 'Unsheltered'],
+                textStyle: {
+                    color: '#ccc'
+                }
+            },
+            xAxis: {
+                data: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+                name: "Year",
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            },
+            yAxis: {
+                name: "Total Number of Homelessness in Gainesville",
+                splitLine: { show: false },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            },
+            series: [{
+                name: 'Total Homelessness',
+                type: 'line',
+                smooth: true,
+                showAllSymbol: true,
+                symbol: 'emptyCircle',
+                symbolSize: 15,
+                data: [744, 924, 1019, 1179, 1814, 1718, 1256, 870, 844, 819, 756, 804, 880, 677, 925]
+            }, {
+                name: 'Unsheltered',
+                type: 'bar',
+                barWidth: 10,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: 5,
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#14c8d4'},
+                                {offset: 1, color: '#43eec6'}
+                            ]
+                        )
+                    }
+                },
+                data: [465, 623, 722, 740, 1425, 1305, 888, 553, 425, 446, 433, 498, 601, 364, 587]
+            }, {
+                name: 'line',
+                type: 'bar',
+                barGap: '-100%',
+                barWidth: 10,
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: 'rgba(20,200,212,0.5)'},
+                                {offset: 0.2, color: 'rgba(20,200,212,0.2)'},
+                                {offset: 1, color: 'rgba(20,200,212,0)'}
+                            ]
+                        )
+                    }
+                },
+                z: -12,
+                data: [744, 924, 1019, 1179, 1814, 1718, 1256, 870, 844, 819, 756, 804, 880, 677, 925]
+            }, {
+                name: 'dotted',
+                type: 'pictorialBar',
+                symbol: 'rect',
+                itemStyle: {
+                    normal: {
+                        color: '#0f375f'
+                    }
+                },
+                symbolRepeat: true,
+                symbolSize: [12, 4],
+                symbolMargin: 1,
+                z: -10,
+                data: [744, 924, 1019, 1179, 1814, 1718, 1256, 870, 844, 819, 756, 804, 880, 677, 925]
+            }]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>

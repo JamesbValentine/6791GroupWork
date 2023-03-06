@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Graph3 Homelessness Grouped by Gender</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1100px;height:850px;"></div>
+    <script type="text/javascript">
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        // Generate data
+        var category = [2015, 2016, 2017,2018, 2019, 2020, 2021, 2022];
+        var dottedBase = [];
+        var barData = [533, 300, 288, 236, 274, 300, 214, 316]; //female
+        var lineData = [334, 540, 530, 516, 526, 568, 461, 605];  // male
+        var TotalData = [870, 844, 819, 756, 804, 880, 677, 925];
+        var rateData = [];               
+        32808
+        for (var i = 0; i < 33; i++) {
+            // var date = i+2001;
+            // category.push(date)
+            var rate=barData[i]/lineData[i];
+            rateData[i] = rate.toFixed(2);
+        }
+
+
+        // option
+        option = {
+            title: {
+                text: 'Homelessness in Gainesville Grouped by Gender ---- With Ratio',
+                x: 'center',
+                y: 0,
+                top: '1%',
+                textStyle:{
+                    color:'#B4B4B4',
+                    fontSize:16,
+                    fontWeight:'normal',
+                },
+                
+            },
+            backgroundColor: '#191E40',
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor:'rgba(255,255,255,0.1)',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        backgroundColor: '#7B7DDC'
+                    }
+                }
+            },
+            legend: {
+                data: ['Female', 'Male','Gender Ratio','Total Homelessness'],
+                textStyle: {
+                    color: '#B4B4B4'
+                },
+                top:'7%',
+            },
+            grid:{
+                x:'12%',
+                width:'82%',
+                y:'12%',
+            },
+            xAxis: {
+                name: "Year",
+                data: category,
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4'
+                    }
+                },
+                axisTick:{
+                    show:false,
+                },
+            },
+            yAxis: [{
+                name: "Count of Homelessness",
+                splitLine: {show: false},
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4',
+                    }
+                },
+                
+                axisLabel:{
+                    formatter:'{value} ',
+                }
+            },
+                {
+                name: "Ratio",
+                splitLine: {show: false},
+                axisLine: {
+                    lineStyle: {
+                        color: '#B4B4B4',
+                    }
+                },
+                axisLabel:{
+                    formatter:'{value} ',
+                }
+            }],
+            
+            series: [{
+                name: 'Gender Ratio',
+                type: 'line',
+                smooth: true,
+                showAllSymbol: true,
+                symbol: 'emptyCircle',
+                symbolSize: 20,
+                yAxisIndex: 1,
+                itemStyle: {
+                        normal: {
+                        color:'#F02FC2'},
+                },
+                data: rateData
+            }, {
+                name: 'Total Homelessness',
+                type: 'line',
+                smooth: true,
+                showAllSymbol: true,
+                symbol: 'emptyCircle',
+                symbolSize: 20,
+                itemStyle: {
+                        normal: {
+                        color:'#7B7DDC'},
+                },
+                data: TotalData
+            }, {
+                name: 'Female',
+                type: 'bar',
+                barWidth: 20,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: 12,
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#956FD4'},
+                                {offset: 1, color: '#3EACE5'}
+                            ]
+                        )
+                    }
+                },
+                data: barData
+            }, 
+            
+            {
+                name: 'Male',
+                type: 'bar',
+                barGap: '-100%',
+                barWidth: 20,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: 12,
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: 'rgba(156,107,211,0.5)'},
+                                {offset: 0.2, color: 'rgba(156,107,211,0.3)'},
+                                {offset: 1, color: 'rgba(156,107,211,0)'}
+                            ]
+                        )
+                    }
+                },
+                z: -12,
+                
+                data: lineData
+            }, 
+        ]
+        };
+
+
+
+
+
+        option && myChart.setOption(option);
+
+    </script>
+</body>
+</html>
